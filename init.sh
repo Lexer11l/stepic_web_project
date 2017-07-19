@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+sudo pip install --upgrade django; sudo pip install --upgrade gunicorn
 sudo ln -fs /home/box/web/etc/nginx.conf  /etc/nginx/sites-enabled/default
 sudo /etc/init.d/nginx restart
 
