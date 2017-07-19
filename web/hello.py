@@ -1,4 +1,4 @@
-def wsgi_application(environ, start_response):
+def app(environ, start_response):
     raw_uri = str(environ.get('RAW_URI'))
 
     raw_uri = raw_uri[2:]
@@ -9,11 +9,8 @@ def wsgi_application(environ, start_response):
     for param in params:
         data += param + '\r\n'
 
-
-    status = '200 OK'
-    headers = [
-        ('Content-Type', 'text/plain'),
+    start_response("200 OK", [
+        ("Content-Type", "text/plain"),
         ("Content-Length", str(len(data)))
-    ]
-    start_response(status, headers )
+    ])
     return iter([data])
