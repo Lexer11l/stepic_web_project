@@ -1,6 +1,6 @@
-def app(environ, start_response):
-    status = '200 OK'
-    headers = [('Content-Type', 'text/plain')]
-    start_response(status, headers)
-    body = [bytes(i + '\r\n', 'ascii') for i in environ['QUERY_STRING'].split('&')]
-    return body
+def app(env, start_response):
+    data = str(env['QUERY_STRING']).replace('&', '\n')
+    start_response("200 OK", [
+        ("Content-Type", "text/plain")
+    ])
+    return [data]
