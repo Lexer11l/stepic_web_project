@@ -1,7 +1,8 @@
-# Nginx
-sudo ln -sf /home/box/web/etc/nginx.conf /etc/nginx/sites-enabled/default
+sudo rm /etc/nginx/sites-enabled/test.conf
+sudo ln -s /home/box/web/etc/nginx.conf /etc/nginx/sites-enabled/test.conf
+sudo rm /etc/nginx/sites-enabled/default
 sudo /etc/init.d/nginx restart
 
-# Gunicorn
-sudo ln -sf /home/box/web/etc/gunicorn.conf.py /etc/gunicorn.d/gunicorn.conf.py
-gunicorn -c /etc/gunicorn.d/gunicorn.conf.py ask.wsgi:application
+sudo rm /etc/gunicorn.d/hello.py
+sudo ln -s /home/box/web/etc/gunicorn.conf /etc/gunicorn.d/test
+sudo /etc/init.d/gunicorn restart
